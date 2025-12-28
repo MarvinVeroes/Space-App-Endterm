@@ -21,5 +21,8 @@ data class RocketDto(
     val costPerLaunch: Long,
 
     val description: String,
-    val wikipedia: String?
+    val wikipedia: String?,
+
+    @SerializedName("active")
+    val active: Boolean
 )

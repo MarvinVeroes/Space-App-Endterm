@@ -16,6 +16,9 @@
       <SelectionState runConfigName="validLogin_navigatesToHome()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="activeFilter_showsOnlyActiveRockets()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>

@@ -9,6 +9,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.stateDescription
@@ -54,6 +55,7 @@ fun HomeLoadingState() {
 fun HomeEmptyState() {
     Column(
         modifier = Modifier
+            .testTag("home_empty_state")
             .fillMaxSize()
             .liveRegionContainer("Estado: sin resultados", "Sin resultados"),
         horizontalAlignment = Alignment.CenterHorizontally,

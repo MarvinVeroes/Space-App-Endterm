@@ -27,6 +27,11 @@ import kotlinx.coroutines.flow.asSharedFlow
 
 class HomeViewModel(app: Application) : AndroidViewModel(app) {
 
+    private val showOnlyActiveFlow = MutableStateFlow(false)
+
+    fun onShowOnlyActiveChanged(value: Boolean) {
+        showOnlyActiveFlow.value = value
+    }
     private val _uiEvent = MutableSharedFlow<HomeUiEvent>(
         replay = 0,
         extraBufferCapacity = 1,
@@ -53,13 +58,18 @@ class HomeViewModel(app: Application) : AndroidViewModel(app) {
         queryFlow,
         isLoadingFlow,
         errorMessageFlow,
-        rocketsFlow
-    ) { query, isLoading, errorMessage, rockets ->
+        rocketsFlow,
+        showOnlyActiveFlow
+    ) { query, isLoading, errorMessage, rockets, showOnlyActive ->
+
+        val filtered = if (showOnlyActive) rockets.filter { it.isActive } else rockets
+
         HomeUiState(
             query = query,
             isLoading = isLoading,
             errorMessage = errorMessage,
-            rockets = rockets
+            rockets = rockets,
+            showOnlyActive = showOnlyActive
         )
     }.stateIn(
         scope = viewModelScope,
@@ -115,4 +125,5 @@ private fun Rocket.toUi(): RocketItemUi =
         id = id,
         name = name,
         imageUrl = imageUrl,
+        isActive = active
     )

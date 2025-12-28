@@ -15,5 +15,6 @@ fun RocketEntity.toDomain(): Rocket =
         stages = stages,
         costPerLaunch = costPerLaunch,
         description = description,
-        wikipedia = wikipedia
+        wikipedia = wikipedia,
+        active = active
     )

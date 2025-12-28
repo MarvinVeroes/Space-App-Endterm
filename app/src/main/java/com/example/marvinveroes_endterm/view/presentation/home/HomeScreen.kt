@@ -25,6 +25,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Switch
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -51,6 +52,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.stateDescription
 import com.example.marvinveroes_endterm.view.core.components.HomeEmptyState
 import com.example.marvinveroes_endterm.view.core.components.HomeErrorState
 import com.example.marvinveroes_endterm.view.core.components.HomeLoadingState
@@ -80,6 +82,7 @@ fun HomeScreen(
     }
 
     Scaffold(
+        modifier = Modifier.testTag("home_screen"),
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             TopAppBar(
@@ -128,6 +131,21 @@ fun HomeScreen(
                 placeholder = stringResource(R.string.home_screen_rocket_finder_placeholder),
                 singleLine = true
             )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                AppText(text = "Mostrar solo activos")
+
+                Switch(
+                    modifier = Modifier.testTag("filter_active_switch"),
+                    checked = uiState.showOnlyActive,
+                    onCheckedChange = homeViewModel::onShowOnlyActiveChanged
+                )
+            }
 
             Spacer(Modifier.height(16.dp))
 
@@ -183,7 +201,9 @@ private fun RocketRow(
         onClick = onClick,
         modifier = Modifier
             .fillMaxWidth()
+            .testTag("rocket_item_${rocket.id}")
             .semantics {
+                stateDescription = if (rocket.isActive) "active" else "inactive"
                 role = Role.Button
                 contentDescription = "Abrir detalle del cohete ${rocket.name}"
             },

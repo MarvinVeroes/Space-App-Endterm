@@ -15,5 +15,6 @@ fun RocketDto.toEntity(): RocketEntity =
         stages = stages,
         costPerLaunch = costPerLaunch,
         description = description,
-        wikipedia = wikipedia
+        wikipedia = wikipedia,
+        active = active
     )

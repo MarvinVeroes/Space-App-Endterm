@@ -13,5 +13,6 @@ data class Rocket(
     val stages: Int,
     val costPerLaunch: Long,
     val description: String,
-    val wikipedia: String?
+    val wikipedia: String?,
+    val active: Boolean
 )

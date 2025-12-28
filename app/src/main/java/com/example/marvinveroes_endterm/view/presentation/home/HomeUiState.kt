@@ -5,5 +5,7 @@ data class HomeUiState(
     val query: String = "",
     val isLoading: Boolean = false,
     val errorMessage: String? = null,
-    val rockets: List<RocketItemUi> = emptyList()
+    val rockets: List<RocketItemUi> = emptyList(),
+    val showOnlyActive: Boolean = false
+
 )
