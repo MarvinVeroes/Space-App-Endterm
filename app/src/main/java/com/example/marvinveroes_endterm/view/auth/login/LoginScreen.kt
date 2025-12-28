@@ -25,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -102,7 +103,7 @@ fun LoginScreen(
             )
 
             AppTextField(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().testTag("login_email"),
                 value = uiState.email,
                 label = stringResource(R.string.login_screen_textfield_email),
                 placeholder = stringResource(R.string.login_screen_textfield_email_placeholder),
@@ -119,7 +120,7 @@ fun LoginScreen(
             Spacer(Modifier.height(12.dp))
 
             AppTextField(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().testTag("login_password"),
                 value = uiState.password,
                 label = stringResource(R.string.login_screen_textfield_password),
                 placeholder = stringResource(R.string.login_screen_textfield_password_placeholder),
@@ -140,7 +141,7 @@ fun LoginScreen(
             Spacer(Modifier.height(18.dp))
 
             AppButton(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().testTag("login_button"),
                 text = if (uiState.isLoading) "Cargando..." else "Iniciar sesión",
                 onClick = { loginViewModel.onLoginClick() },
                 enabled = uiState.isLoginEnabled && !uiState.isLoading
