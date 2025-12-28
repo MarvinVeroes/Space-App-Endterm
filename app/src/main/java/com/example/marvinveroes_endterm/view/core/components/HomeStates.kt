@@ -11,21 +11,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.liveRegion
-import androidx.compose.ui.semantics.progressBarRangeInfo
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import com.example.marvinveroes_endterm.R
-import com.example.marvinveroes_endterm.view.core.components.AppText
+import androidx.compose.ui.semantics.ProgressBarRangeInfo
+import androidx.compose.ui.semantics.progressBarRangeInfo
 
 @Composable
 fun HomeLoadingState() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .liveRegionContainer("Cargando cohetes"),
+            .liveRegionContainer("Estado: cargando cohetes", "\"Cargando\""),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -36,7 +37,11 @@ fun HomeLoadingState() {
             modifier = Modifier.size(36.dp)
         )
         Spacer(Modifier.height(12.dp))
-        CircularProgressIndicator()
+        CircularProgressIndicator(
+            modifier = Modifier.semantics {
+                progressBarRangeInfo = ProgressBarRangeInfo.Indeterminate
+            }
+        )
         Spacer(Modifier.height(12.dp))
         AppText(
             text = stringResource(R.string.home_screen_rocket_loading_state),
@@ -50,7 +55,7 @@ fun HomeEmptyState() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .liveRegionContainer("Sin resultados. Prueba con otro nombre.", "Sin resultados"),
+            .liveRegionContainer("Estado: sin resultados", "Sin resultados"),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -64,7 +69,8 @@ fun HomeEmptyState() {
         AppText(
             text = stringResource(R.string.home_screen_rocket_no_result),
             style = MaterialTheme.typography.titleSmall,
-            color = MaterialTheme.colorScheme.onBackground
+            color = MaterialTheme.colorScheme.onBackground,
+            modifier = Modifier.semantics { heading() }
         )
         Spacer(Modifier.height(6.dp))
         AppText(
@@ -85,7 +91,7 @@ fun HomeErrorState(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .liveRegionContainer("Error al cargar. $text", "Error"),
+            .liveRegionContainer("Estado: error de carga $text", "Error"),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -111,12 +117,9 @@ fun HomeErrorState(
 // --- helper para no repetir semantics ---
 private fun Modifier.liveRegionContainer(
     contentDesc: String,
-    stateDesc: String = "Cargando"
-): Modifier = this.then(
-    Modifier.semantics {
-        liveRegion = LiveRegionMode.Polite
-        contentDescription = contentDesc
-        stateDescription = stateDesc
-        // si quisieras indicar indeterminate solo en loading, hazlo allí, no aquí
-    }
-)
+    stateDesc: String
+): Modifier = semantics {
+    liveRegion = LiveRegionMode.Polite
+    contentDescription = contentDesc
+    stateDescription = stateDesc
+}
