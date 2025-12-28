@@ -1,0 +1,58 @@
+<resources>
+    <string name="app_name">Marvin Veroes - Endterm</string>
+
+<!--    Login Screen-->
+
+    <string name="login_screen_header_text_spain">Español (España)</string>
+
+    <string name="login_screen_title_login">Iniciar sesion</string>
+
+    <string name="login_screen_textfield_email">Correo electronico</string>
+
+    <string name="login_screen_textfield_email_placeholder">Introduce tu correo electronico</string>
+
+    <string name="login_screen_textfield_password">Contraseña</string>
+
+    <string name="login_screen_textfield_password_placeholder">Introduce tu contraseña</string>
+
+    <string name="login_screen_button_login">Iniciar sesion</string>
+
+    <string name="login_screen_button_text_forgot_password">¿Has olvidado tu contraseña?</string>
+
+    <string name="login_screen_button_register">Crear cuenta nueva</string>
+
+
+<!--    Register Screen-->
+
+    <string name="register_screen_title_phone">Registro con numero de telefono</string>
+    <string name="register_screen_subtitle_phone">Introduce tu numero para continuar</string>
+    <string name="register_screen_textfield_phone">Telefono</string>
+    <string name="register_screen_placeholder_phone">Ej.601032095</string>
+    <string name="register_screen_button_continue_phone">Continuar</string>
+    <string name="register_screen_button_change_to_email">Registrarme con email</string>
+
+    <string name="register_screen_body">Al continuar, aceptas las condiciones del servicio</string>
+    <string name="register_screen_forgot_account">¿No recuerdas tu cuenta? Recuperar acceso</string>
+
+    <string name="register_screen_title_email">Registro con correo electronico</string>
+    <string name="register_screen_subtitle_email">Introduce tu correo electronico para continuar</string>
+    <string name="register_screen_textfield_email">Correo electronico</string>
+    <string name="register_screen_placeholder_email">Ej. admin@lasalle.es</string>
+    <string name="register_screen_button_continue_email">Continuar</string>
+    <string name="register_screen_button_change_to_phone">Registrarme con numero de telefono</string>
+
+<!--    Home Screen-->
+    <string name="home_screen_title">Lista de cohetes</string>
+    <string name="home_screen_rocket_finder">Buscar cohete</string>
+    <string name="home_screen_rocket_finder_placeholder">Falcon, Starship...</string>
+    <string name="home_screen_rocket_loading_state">Cargando cohetes...</string>
+    <string name="home_screen_rocket_no_result">Sin resultados.</string>
+    <string name="home_screen_rocket_try_other_name">Prueba con otro nombre.</string>
+    <string name="home_screen_rocket_error_loading">Ha ocurrido un error al cargar los datos.</string>
+    <string name="home_screen_rocket_error_retry">Reintentar</string>
+    <string name="home_screen_details">Ver detalles</string>
+
+
+
+
+</resources>
