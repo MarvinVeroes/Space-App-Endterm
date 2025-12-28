@@ -7,7 +7,7 @@ import com.example.marvinveroes_endterm.data.local.entity.RocketEntity
 
 @Database(
     entities = [RocketEntity::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {

@@ -1,12 +1,13 @@
 package com.example.marvinveroes_endterm.view.core.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import com.example.marvinveroes_endterm.view.auth.login.LoginScreen
 import com.example.marvinveroes_endterm.view.auth.register.RegisterScreen
+import com.example.marvinveroes_endterm.view.presentation.detail.RocketDetailScreen
 import com.example.marvinveroes_endterm.view.presentation.home.HomeScreen
 import com.example.marvinveroes_endterm.view.presentation.splash.SplashScreen
 
@@ -60,7 +61,16 @@ fun NavigationWrapper() {
                         popUpTo(Home) { inclusive = true }
                         launchSingleTop = true
                     }
-                }
+                },
+                onRocketClick = { id -> navController.navigate(RocketDetail(id))}
+            )
+        }
+        composable<RocketDetail> { backStackEntry ->
+            val args = backStackEntry.toRoute<RocketDetail>()
+
+            RocketDetailScreen(
+                rocketId = args.rocketId,
+                navigateBack = {navController.popBackStack()}
             )
         }
     }

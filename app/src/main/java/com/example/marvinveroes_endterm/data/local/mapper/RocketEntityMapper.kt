@@ -7,5 +7,13 @@ fun RocketEntity.toDomain(): Rocket =
     Rocket(
         id = id,
         name = name,
-        imageUrl = imageUrl
+        imageUrl = imageUrl,
+
+        country = country,
+        firstFlight = firstFlight,
+        successRatePct = successRatePct,
+        stages = stages,
+        costPerLaunch = costPerLaunch,
+        description = description,
+        wikipedia = wikipedia
     )

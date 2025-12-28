@@ -6,4 +6,6 @@ import kotlinx.coroutines.flow.Flow
 interface RocketRepository {
     fun observeRockets(query: String): Flow<List<Rocket>>
     suspend fun refreshRockets()
+
+    fun observeRocketById(id: String): Flow<Rocket?>
 }

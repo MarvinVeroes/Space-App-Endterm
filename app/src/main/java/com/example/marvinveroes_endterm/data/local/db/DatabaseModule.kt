@@ -13,7 +13,8 @@ object DatabaseModule {
                 context.applicationContext,
                 AppDatabase::class.java,
                 "spaceapp.db"
-            ).build()
+            ).fallbackToDestructiveMigration()
+                .build()
             INSTANCE = instance
             instance
         }

@@ -27,4 +27,10 @@ class RocketRepositoryImpl(
         val entities = remote.map { it.toEntity() }
         dao.insertAll(entities)
     }
+
+    override fun observeRocketById(id: String): Flow<Rocket> {
+        return dao.observeById(id).map { entity ->
+            requireNotNull(entity) { "Rocket not found" }.toDomain()
+        }
+    }
 }

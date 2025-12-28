@@ -114,5 +114,5 @@ private fun Rocket.toUi(): RocketItemUi =
     RocketItemUi(
         id = id,
         name = name,
-        imageUrl = imageUrl
+        imageUrl = imageUrl,
     )

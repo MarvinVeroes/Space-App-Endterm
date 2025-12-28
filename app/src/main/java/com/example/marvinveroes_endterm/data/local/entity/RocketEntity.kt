@@ -7,5 +7,13 @@ import androidx.room.PrimaryKey
 data class RocketEntity(
     @PrimaryKey val id: String,
     val name: String,
-    val imageUrl: String?
+    val imageUrl: String?,
+
+    val country: String,
+    val firstFlight: String,
+    val successRatePct: Int,
+    val stages: Int,
+    val costPerLaunch: Long,
+    val description: String,
+    val wikipedia: String?
 )

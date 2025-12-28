@@ -3,6 +3,7 @@ package com.example.marvinveroes_endterm.view.presentation.home
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -50,7 +51,13 @@ import androidx.compose.ui.res.painterResource
 import coil3.request.crossfade
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.role
+import com.example.marvinveroes_endterm.view.core.components.HomeEmptyState
+import com.example.marvinveroes_endterm.view.core.components.HomeErrorState
+import com.example.marvinveroes_endterm.view.core.components.HomeLoadingState
 import kotlinx.coroutines.flow.collectLatest
+
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -127,20 +134,16 @@ fun HomeScreen(
 
             when {
                 uiState.isLoading && uiState.rockets.isEmpty() -> {
-                    LoadingState()
+                    HomeLoadingState()
                 }
 
                 uiState.errorMessage != null && uiState.rockets.isEmpty() -> {
-                    ErrorState(
-                        message = uiState.errorMessage,
-                        onRetry = homeViewModel::retry
-                    )
+                    HomeErrorState(message = uiState.errorMessage, onRetry = homeViewModel::retry)
                 }
 
                 uiState.rockets.isEmpty() -> {
-                    EmptyState()
+                    HomeEmptyState()
                 }
-
                 else -> {
                     RocketsList(
                         rockets = uiState.rockets,
@@ -149,69 +152,6 @@ fun HomeScreen(
                     )
                 }
             }
-        }
-    }
-}
-
-@Composable
-private fun LoadingState() {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        CircularProgressIndicator()
-        Spacer(Modifier.height(12.dp))
-        AppText(
-            text = stringResource(R.string.home_screen_rocket_loading_state),
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-        )
-    }
-}
-
-@Composable
-private fun EmptyState() {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        AppText(
-            text = stringResource(R.string.home_screen_rocket_no_result),
-            style = MaterialTheme.typography.titleSmall,
-            color = MaterialTheme.colorScheme.onBackground
-        )
-        Spacer(Modifier.height(6.dp))
-        AppText(
-            text = stringResource(R.string.home_screen_rocket_try_other_name),
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-        )
-    }
-}
-
-@Composable
-private fun ErrorState(
-    message: String?,
-    onRetry: () -> Unit
-) {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        AppText(
-            text = message ?: stringResource(R.string.home_screen_rocket_error_loading),
-            color = MaterialTheme.colorScheme.error
-        )
-        Spacer(Modifier.height(12.dp))
-        Button(
-            onClick = onRetry,
-            colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.primary,
-                contentColor = MaterialTheme.colorScheme.onPrimary
-            )
-        ) {
-            AppText(text = stringResource(R.string.home_screen_rocket_error_retry))
         }
     }
 }
@@ -242,10 +182,15 @@ private fun RocketRow(
 ) {
     Card(
         onClick = onClick,
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .semantics {
+                role = Role.Button
+                contentDescription = "Abrir detalle del cohete ${rocket.name}"
+            },
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
     ) {
-        androidx.compose.foundation.layout.Row(
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(14.dp),

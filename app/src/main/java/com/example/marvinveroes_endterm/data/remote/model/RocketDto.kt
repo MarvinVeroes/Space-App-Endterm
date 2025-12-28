@@ -5,5 +5,21 @@ import com.google.gson.annotations.SerializedName
 data class RocketDto(
     val id: String,
     val name: String,
-    @SerializedName("flickr_images") val flickrImages: List<String>?
+    @SerializedName("flickr_images") val flickrImages: List<String>?,
+
+    val country: String,
+
+    @SerializedName("first_flight")
+    val firstFlight: String,
+
+    @SerializedName("success_rate_pct")
+    val successRatePct: Int,
+
+    val stages: Int,
+
+    @SerializedName("cost_per_launch")
+    val costPerLaunch: Long,
+
+    val description: String,
+    val wikipedia: String?
 )

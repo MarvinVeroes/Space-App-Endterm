@@ -52,6 +52,21 @@
     <string name="home_screen_rocket_error_retry">Reintentar</string>
     <string name="home_screen_details">Ver detalles</string>
 
+<!--    Detail Screen-->
+    <string name="detail_screen_title">Detalle</string>
+    <string name="common_back">Volver</string>
+
+    <string name="detail_screen_description_title">Descripción</string>
+    <string name="detail_screen_no_description">No hay descripción disponible.</string>
+
+    <string name="detail_screen_country">País</string>
+    <string name="detail_screen_first_flight">Primer vuelo</string>
+    <string name="detail_screen_success_rate">Éxito</string>
+    <string name="detail_screen_stages">Etapas</string>
+    <string name="detail_screen_cost">Coste/lanzamiento</string>
+    <string name="detail_screen_open_wikipedia">Ver en Wikipedia</string>
+
+
 
 
 

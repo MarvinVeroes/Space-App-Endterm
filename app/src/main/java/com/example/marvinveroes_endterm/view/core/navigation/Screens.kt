@@ -13,3 +13,6 @@ object Register
 
 @Serializable
 object Home
+
+@Serializable
+data class RocketDetail(val rocketId: String)

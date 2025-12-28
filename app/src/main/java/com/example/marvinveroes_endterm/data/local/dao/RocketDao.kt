@@ -23,6 +23,10 @@ interface RocketDao {
     @Query("DELETE FROM rockets")
     suspend fun clearAll()
 
+    @Query("SELECT * FROM rockets WHERE id = :id LIMIT 1")
+    fun observeById(id: String): Flow<RocketEntity?>
+
+
     @Transaction
     suspend fun replaceAll(items: List<RocketEntity>) {
         clearAll()
