@@ -10,11 +10,18 @@ import com.example.marvinveroes_endterm.domain.repository.RocketRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
+/**
+ * Implementación del repositorio de cohetes
+ * Combina fuentes de datos locales y remotas para proporcionar datos de cohetes.
+ */
 class RocketRepositoryImpl(
     context: Context
 ) : RocketRepository {
 
+    // DAO de Room: fuente local (cache)
     private val dao = DatabaseModule.getDatabase(context).rocketDao()
+
+    // API remota (Retrofit)
     private val api = NetworkModule.spaceXApi
 
     override fun observeRockets(query: String): Flow<List<Rocket>> {
@@ -28,9 +35,10 @@ class RocketRepositoryImpl(
         dao.insertAll(entities)
     }
 
-    override fun observeRocketById(id: String): Flow<Rocket> {
+
+    override fun observeRocketById(id: String): Flow<Rocket?> {
         return dao.observeById(id).map { entity ->
-            requireNotNull(entity) { "Rocket not found" }.toDomain()
+            entity?.toDomain()
         }
     }
 }

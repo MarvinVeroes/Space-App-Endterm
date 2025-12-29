@@ -28,6 +28,19 @@ import androidx.compose.ui.platform.LocalUriHandler
 import java.text.NumberFormat
 import java.util.Locale
 
+/**
+ * Pantalla de detalle de un cohete.
+ *
+ * Muestra la información detallada de un cohete específico, incluyendo su imagen,
+ * nombre, país de origen, primer vuelo, tasa de éxito, etapas, costo por lanzamiento
+ * y una descripción. También proporciona un botón para abrir la página de Wikipedia
+ * del cohete si está disponible.
+ *
+ * @param rocketId ID del cohete a mostrar.
+ * @param navigateBack Función para navegar hacia atrás en la pila de navegación.
+ */
+
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RocketDetailScreen(
@@ -106,7 +119,7 @@ private fun RocketDetailContent(rocket: com.example.marvinveroes_endterm.domain.
     ) {
         Spacer(Modifier.height(12.dp))
 
-        // Imagen grande (principal o placeholder)
+        // Imagen
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -140,7 +153,7 @@ private fun RocketDetailContent(rocket: com.example.marvinveroes_endterm.domain.
 
         Spacer(Modifier.height(14.dp))
 
-        // Datos relevantes (mínimo 5)
+        // Datos relevantes
         DetailFactsCard(
             country = rocket.country,
             firstFlight = rocket.firstFlight,

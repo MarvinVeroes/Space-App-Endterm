@@ -1,5 +1,8 @@
 package com.example.marvinveroes_endterm.domain.model
 
+/** Modelo de datos que representa un cohete
+ * Contiene información detallada sobre el cohete.
+ */
 data class Rocket(
     val id: String,
     val name: String,

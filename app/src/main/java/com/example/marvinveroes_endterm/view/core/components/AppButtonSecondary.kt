@@ -8,6 +8,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+/**
+ * AppButtonSecondary
+ * Componente reutilizable para botones secundarios con borde y texto personalizados.
+ */
 @Composable
 fun AppButtonSecondary(
     modifier: Modifier = Modifier, onClick: () -> Unit, border: BorderStroke = BorderStroke(

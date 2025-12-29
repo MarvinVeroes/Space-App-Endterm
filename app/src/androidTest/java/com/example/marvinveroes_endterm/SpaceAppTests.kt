@@ -2,6 +2,7 @@ package com.example.marvinveroes_endterm
 
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.semantics.getOrNull
+import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
@@ -14,12 +15,28 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+/**
+ * Tests de la aplicación SpaceApp.
+ * Incluye pruebas de login y filtrado de cohetes activos.
+ * Las credenciales de login validas son:
+ * Email: admin@lasalle.es
+ * Password: admin1234
+ */
+
+// Matcher personalizado para buscar nodos con un prefijo específico en el testTag
+private fun hasTestTagPrefix(prefix: String) =
+    SemanticsMatcher("Has testTag prefix: $prefix") { node ->
+        val tag = node.config.getOrNull(SemanticsProperties.TestTag)
+        tag?.startsWith(prefix) == true
+    }
+
 @RunWith(AndroidJUnit4::class)
-class LoginNavigationTest {
+class SpaceAppTests {
 
     @get:Rule
     val rule = createAndroidComposeRule<MainActivity>()
 
+    // Test de login válido
     @Test
     fun validLogin_navigatesToHome() {
         rule.waitUntil(timeoutMillis = 5_000) {
@@ -36,14 +53,15 @@ class LoginNavigationTest {
         rule.onNodeWithTag("home_title").assertIsDisplayed()
     }
 
+    // Test de filtro de cohetes activos
     @Test
     fun activeFilter_showsOnlyActiveRockets() {
-        // 1) Esperar login
+        //  Esperar login
         rule.waitUntil(15_000) {
             rule.onAllNodesWithTag("login_email").fetchSemanticsNodes().isNotEmpty()
         }
 
-        // 2) Login válido
+        //  Login válido
         rule.onNodeWithTag("login_email").performTextClearance()
         rule.onNodeWithTag("login_email").performTextInput("admin@lasalle.es")
 
@@ -52,29 +70,35 @@ class LoginNavigationTest {
 
         rule.onNodeWithTag("login_button").performClick()
 
-        // 3) Esperar Home (clave)
+        //  Esperar Home
         rule.waitUntil(15_000) {
             rule.onAllNodesWithTag("home_screen").fetchSemanticsNodes().isNotEmpty()
         }
 
-        // 4) Esperar a que exista el switch (debería estar siempre)
+        //  Esperar switch
         rule.waitUntil(15_000) {
             rule.onAllNodesWithTag("filter_active_switch").fetchSemanticsNodes().isNotEmpty()
         }
 
-        // 5) Activar filtro
+        //  Activar filtro
         rule.onNodeWithTag("filter_active_switch").performClick()
 
-        // 6) Esperar a que termine el loading (o haya lista/empty)
+        //  Esperar resultado: lista (items) o empty o error
         rule.waitUntil(15_000) {
-            val hasItems = rule.onAllNodesWithTag("rocket_item").fetchSemanticsNodes().isNotEmpty()
-            val hasEmpty =
-                rule.onAllNodesWithTag("home_empty_state").fetchSemanticsNodes().isNotEmpty()
-            hasItems || hasEmpty
+            val hasItems = rule.onAllNodes(hasTestTagPrefix("rocket_item_")).fetchSemanticsNodes().isNotEmpty()
+            val hasEmpty = rule.onAllNodesWithTag("home_empty_state").fetchSemanticsNodes().isNotEmpty()
+            val hasError = rule.onAllNodesWithTag("home_error_state").fetchSemanticsNodes().isNotEmpty()
+            hasItems || hasEmpty || hasError
         }
 
-        // 7) Si hay items, todos deben ser active
-        val nodes = rule.onAllNodesWithTag("rocket_item").fetchSemanticsNodes()
+        // Si entro en error, el test debe fallar por no poder verificar el filtro
+        val errorNodes = rule.onAllNodesWithTag("home_error_state").fetchSemanticsNodes()
+        if (errorNodes.isNotEmpty()) {
+            throw AssertionError("Home está en estado de error, no se pudo verificar el filtro de activos.")
+        }
+
+        //  Si hay items, todos deben ser active
+        val nodes = rule.onAllNodes(hasTestTagPrefix("rocket_item_")).fetchSemanticsNodes()
         if (nodes.isNotEmpty()) {
             nodes.forEach { node ->
                 val state = node.config.getOrNull(SemanticsProperties.StateDescription)
@@ -82,4 +106,5 @@ class LoginNavigationTest {
             }
         }
     }
+
 }

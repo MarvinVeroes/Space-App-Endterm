@@ -30,16 +30,23 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.marvinveroes_endterm.R
-import com.example.marvinveroes_endterm.ui.theme.MarvinVeroesEndtermTheme
 import com.example.marvinveroes_endterm.view.core.components.AppButton
 import com.example.marvinveroes_endterm.view.core.components.AppButtonSecondary
 import com.example.marvinveroes_endterm.view.core.components.AppText
 import com.example.marvinveroes_endterm.view.core.components.AppTextField
+
+/**
+ * Pantalla de login
+ *
+ * Pantalla que permite al usuario iniciar sesión con su email y contraseña.
+ * Proporciona campos de entrada para el email y la contraseña, tambien opcion a registrarse y recuperar contraseña.
+ * Muestra mensajes de error y un indicador de carga durante el proceso de inicio de sesion.
+ * Evita hardcodear cadenas de texto, utilizando recursos de strings. (strings.xml)
+ */
 
 @Composable
 fun LoginScreen(
@@ -57,6 +64,7 @@ fun LoginScreen(
                 is LoginUiEvent.ShowSnackbar -> {
                     snackbarHostState.showSnackbar(event.message)
                 }
+
                 LoginUiEvent.NavigateToHome -> {
                     navigateToHome()
                 }
@@ -103,7 +111,9 @@ fun LoginScreen(
             )
 
             AppTextField(
-                modifier = Modifier.fillMaxWidth().testTag("login_email"),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .testTag("login_email"),
                 value = uiState.email,
                 label = stringResource(R.string.login_screen_textfield_email),
                 placeholder = stringResource(R.string.login_screen_textfield_email_placeholder),
@@ -120,7 +130,9 @@ fun LoginScreen(
             Spacer(Modifier.height(12.dp))
 
             AppTextField(
-                modifier = Modifier.fillMaxWidth().testTag("login_password"),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .testTag("login_password"),
                 value = uiState.password,
                 label = stringResource(R.string.login_screen_textfield_password),
                 placeholder = stringResource(R.string.login_screen_textfield_password_placeholder),
@@ -141,8 +153,12 @@ fun LoginScreen(
             Spacer(Modifier.height(18.dp))
 
             AppButton(
-                modifier = Modifier.fillMaxWidth().testTag("login_button"),
-                text = if (uiState.isLoading) "Cargando..." else "Iniciar sesión",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .testTag("login_button"),
+                text = if (uiState.isLoading) stringResource(R.string.login_screen_button_login_loading) else stringResource(
+                    R.string.login_screen_button_login
+                ),
                 onClick = { loginViewModel.onLoginClick() },
                 enabled = uiState.isLoginEnabled && !uiState.isLoading
             )
@@ -175,17 +191,5 @@ fun LoginScreen(
                 tint = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
-    }
-}
-
-@Preview
-@Composable
-fun LoginScreenPreview() {
-    MarvinVeroesEndtermTheme {
-        LoginScreen(
-            navigateToRegister = {},
-            navigateToHome = {},
-            loginViewModel = LoginViewModel()
-        )
     }
 }

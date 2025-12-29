@@ -26,8 +26,9 @@ import androidx.compose.ui.semantics.progressBarRangeInfo
 fun HomeLoadingState() {
     Column(
         modifier = Modifier
+            .testTag("home_loading_state")
             .fillMaxSize()
-            .liveRegionContainer("Estado: cargando cohetes", "\"Cargando\""),
+            .liveRegionContainer("Estado: cargando cohetes", "Cargando"),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -92,6 +93,7 @@ fun HomeErrorState(
 
     Column(
         modifier = Modifier
+            .testTag("home_error_state")
             .fillMaxSize()
             .liveRegionContainer("Estado: error de carga $text", "Error"),
         horizontalAlignment = Alignment.CenterHorizontally,

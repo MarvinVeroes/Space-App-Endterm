@@ -6,6 +6,12 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+/**
+ * Módulo de red que provee la configuración de Retrofit y OkHttpClient
+ * para interactuar con la API de SpaceX.
+ * Proporciona una instancia de SpaceXApi para realizar llamadas a la API.
+ *
+ */
 object NetworkModule {
 
     private const val BASE_URL = "https://api.spacexdata.com/"

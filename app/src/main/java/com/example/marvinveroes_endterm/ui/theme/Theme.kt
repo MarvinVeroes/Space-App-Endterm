@@ -12,47 +12,60 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 
+// COLORES PARA MODO OSCURO
 private val DarkColorScheme = darkColorScheme(
+    // Colores principales
     primary = SpacePrimary,
     onPrimary = Color.White,
 
     secondary = SpaceSecondary,
     onSecondary = Color.White,
 
+    // Fondo general de la app
     background = SpaceBg,
     onBackground = SpaceText,
 
+    // Superficies
     surface = SpaceSurface,
     onSurface = SpaceText,
 
+    // Variante de sperficie
     surfaceVariant = SpaceSurface,
     onSurfaceVariant = SpaceTextMuted,
 
+    // Bordes
     outline = SpaceOutline,
 
+    // Errores
     error = Color(0xFFFF6B6B),
     onError = Color.White
 )
 
-
+// COLORES PARA MODO CLARO
 private val LightColorScheme = lightColorScheme(
+    // Colores principales
     primary = SpacePrimary,
     onPrimary = Color.White,
 
     secondary = SpaceSecondary,
     onSecondary = Color.White,
 
+    // Fondo general de la app
     background = Color(0xFFF7F4FF),
     onBackground = Color(0xFF1D1A2B),
 
+    // Superficies
     surface = Color.White,
     onSurface = Color(0xFF1D1A2B),
 
+    // Variante de sperficie
     surfaceVariant = Color(0xFFEDE8FF),
     onSurfaceVariant = Color(0xFF4B4362),
 
+    // Bordes
     outline = Color(0xFFCFC7E6),
 
+    // Errores
     error = Color(0xFFB00020),
     onError = Color.White
 )
@@ -62,7 +75,7 @@ private val LightColorScheme = lightColorScheme(
 fun MarvinVeroesEndtermTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = false,
+    dynamicColor: Boolean = false,      // Desactivado por defecto
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {

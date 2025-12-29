@@ -24,6 +24,12 @@ import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 
+/**
+ * ViewModel para la pantalla principal que muestra la lista de cohetes
+ * Maneja el estado de la UI, búsqueda, filtrado y eventos de UI
+ * Utiliza RocketRepository para obtener datos de cohetes
+ * Soporta refresco de datos y manejo de errores
+ */
 
 class HomeViewModel(app: Application) : AndroidViewModel(app) {
 
@@ -68,7 +74,7 @@ class HomeViewModel(app: Application) : AndroidViewModel(app) {
             query = query,
             isLoading = isLoading,
             errorMessage = errorMessage,
-            rockets = rockets,
+            rockets = filtered,
             showOnlyActive = showOnlyActive
         )
     }.stateIn(

@@ -58,8 +58,13 @@ import com.example.marvinveroes_endterm.view.core.components.HomeErrorState
 import com.example.marvinveroes_endterm.view.core.components.HomeLoadingState
 import kotlinx.coroutines.flow.collectLatest
 
-
-
+/**
+ * Pantalla principal que muestra la lista de cohetes
+ * Permite buscar y filtrar cohetes activos
+ * Maneja estados de carga, error y lista vacía
+ * Soporta navegación al detalle del cohete y cierre de sesión
+ *
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
@@ -138,7 +143,7 @@ fun HomeScreen(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                AppText(text = "Mostrar solo activos")
+                AppText(text = stringResource(R.string.home_screen_view_only_active))
 
                 Switch(
                     modifier = Modifier.testTag("filter_active_switch"),

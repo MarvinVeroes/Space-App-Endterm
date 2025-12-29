@@ -5,7 +5,8 @@ import androidx.compose.material3.Shapes
 import androidx.compose.ui.unit.dp
 
 val shapes = Shapes(
-    medium = RoundedCornerShape(16.dp),
-    large = RoundedCornerShape(30.dp),
-    extraLarge = RoundedCornerShape(32.dp)
+    // Shapes globales de la app
+    medium = RoundedCornerShape(16.dp),     // Tarjetas pequeñas
+    large = RoundedCornerShape(30.dp),      // Tarjetas grandes
+    extraLarge = RoundedCornerShape(32.dp)  // Contenedores grandes
 )

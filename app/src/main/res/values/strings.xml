@@ -15,11 +15,19 @@
 
     <string name="login_screen_textfield_password_placeholder">Introduce tu contraseña</string>
 
+    <string name="login_screen_button_login_loading">Cargando...</string>
+
     <string name="login_screen_button_login">Iniciar sesion</string>
 
     <string name="login_screen_button_text_forgot_password">¿Has olvidado tu contraseña?</string>
 
     <string name="login_screen_button_register">Crear cuenta nueva</string>
+
+    <string name="login_screen_support_forgot_password">https://lasallefp.com/contactar/</string>
+
+<!--    Login View Model-->
+
+
 
 
 <!--    Register Screen-->
@@ -51,6 +59,7 @@
     <string name="home_screen_rocket_error_loading">Ha ocurrido un error al cargar los datos.</string>
     <string name="home_screen_rocket_error_retry">Reintentar</string>
     <string name="home_screen_details">Ver detalles</string>
+    <string name="home_screen_view_only_active">Mostrar solo activos</string>
 
 <!--    Detail Screen-->
     <string name="detail_screen_title">Detalle</string>
@@ -66,8 +75,8 @@
     <string name="detail_screen_cost">Coste/lanzamiento</string>
     <string name="detail_screen_open_wikipedia">Ver en Wikipedia</string>
 
-
-
+<!--    RegisterViewModel-->
+    <string name="register_view_model_empty_camp">El campo no puede estar vacío.</string>
 
 
 </resources>

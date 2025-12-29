@@ -3,6 +3,10 @@ package com.example.marvinveroes_endterm.data.local.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * Entidad de base de datos que representa un cohete.
+ * Contiene información detallada sobre el cohete.
+ */
 @Entity(tableName = "rockets")
 data class RocketEntity(
     @PrimaryKey val id: String,

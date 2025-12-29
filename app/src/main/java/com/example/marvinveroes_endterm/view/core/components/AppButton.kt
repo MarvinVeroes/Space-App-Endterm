@@ -10,6 +10,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
 
+
+/**
+ * AppButton
+ * Componente reutilizable para botones con estilos y colores personalizados.
+ */
 @Composable
 fun AppButton(
     modifier: Modifier = Modifier,

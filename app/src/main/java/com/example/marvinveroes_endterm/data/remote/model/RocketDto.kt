@@ -2,6 +2,10 @@ package com.example.marvinveroes_endterm.data.remote.model
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * Modelo de datos que representa un cohete recibido de la API
+ * Contiene información detallada sobre el cohete.
+ */
 data class RocketDto(
     val id: String,
     val name: String,

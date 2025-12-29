@@ -38,11 +38,15 @@ import com.example.marvinveroes_endterm.view.core.components.AppButtonSecondary
 import com.example.marvinveroes_endterm.view.core.components.AppText
 import com.example.marvinveroes_endterm.view.core.components.AppTextField
 
+/**
+ * Pantalla de registro (email o teléfono)
+ * No implementado el flujo de registro, solo la UI y validaciones basicas
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegisterScreen(
     navigateBack: () -> Unit,
-    navigateToHome: () -> Unit,
+    navigateToHome: () -> Unit,     // No esta siendo usada porque el flujo de registro no esta implementado
     registerViewModel: RegisterViewModel = viewModel()
 ) {
     val uiState = registerViewModel.uiState.collectAsStateWithLifecycle().value
@@ -133,7 +137,7 @@ fun RegisterScreen(
                     imeAction = ImeAction.Done
                 ),
                 keyboardActions = KeyboardActions(
-                    onDone = { /* luego: continuar */ }
+                    onDone = { /* luego: continuar */ }     // No implementado
                 )
             )
 

@@ -10,6 +10,14 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
+/**
+ * ViewModel para la pantalla de login
+ *
+ * Gestiona el estado de la UI y los eventos relacionados con el inicio de sesión.
+ * Valida las entradas del usuario y simula un proceso de autenticación.
+ * (SIMULADO PORQUE LA AUTENTIACION REAL NO ESTA IMPLEMENTADA) Usamos un email y contraseña
+ * hardcodeados para la validación.
+ */
 class LoginViewModel : ViewModel() {
 
     private val _uiState = MutableStateFlow(LoginUiState())

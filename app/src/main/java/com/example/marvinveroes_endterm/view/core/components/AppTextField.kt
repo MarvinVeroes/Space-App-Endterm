@@ -18,6 +18,12 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 
+/**
+ * AppTextField
+ * Componente reutilizable para campos de texto con soporte para contraseñas, errores y personalización.
+ *
+ * EL ESTADO DEL TEXTO SE GESTIONA DESDE FUERA DE ESTE COMPONENTE.
+ */
 @Composable
 fun AppTextField(
     value: String,
@@ -88,7 +94,8 @@ fun AppTextField(
         trailingIcon = {
             if (isPassword) {
                 IconButton(
-                    onClick = { setPasswordVisible(!passwordVisible) }
+                    onClick = { setPasswordVisible(!passwordVisible) },
+                    enabled = enabled
                 ) {
                     Icon(
                         imageVector = if (passwordVisible) Icons.Filled.VisibilityOff else Icons.Filled.Visibility,

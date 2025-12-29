@@ -5,6 +5,10 @@ import androidx.room.RoomDatabase
 import com.example.marvinveroes_endterm.data.local.dao.RocketDao
 import com.example.marvinveroes_endterm.data.local.entity.RocketEntity
 
+/**
+ * Base de datos de la aplicación que contiene la tabla de cohetes.
+ * Proporciona acceso al DAO de cohetes.
+ */
 @Database(
     entities = [RocketEntity::class],
     version = 2,

@@ -8,6 +8,11 @@ import androidx.room.Transaction
 import com.example.marvinveroes_endterm.data.local.entity.RocketEntity
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * DAO para acceder a los datos de cohetes en la base de datos local
+ *
+ * Proporciona métodos para observar, buscar, insertar y eliminar cohetes
+ */
 @Dao
 interface RocketDao {
 

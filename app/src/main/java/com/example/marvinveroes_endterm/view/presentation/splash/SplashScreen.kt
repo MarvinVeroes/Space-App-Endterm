@@ -22,6 +22,11 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.scale
 import kotlinx.coroutines.delay
 
+/**
+ * Pantalla de Splash con animación de logo
+ * Muestra el logo de la app con animación de aparición y escala
+ * Después de un tiempo definido, llama a onTimeout para navegar a la siguiente pantalla
+ */
 @Composable
 fun SplashScreen(
     onTimeout: () -> Unit

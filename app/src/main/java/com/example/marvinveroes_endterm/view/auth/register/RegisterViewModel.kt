@@ -6,6 +6,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 
+/**
+ * ViewModel para la pantalla de registro
+ * Maneja el estado de la UI y las validaciones
+ * Soporta registro por teléfono o email
+ * No implementa el flujo de registro real
+ */
 class RegisterViewModel : ViewModel() {
 
     private val _uiState = MutableStateFlow(RegisterUiState())

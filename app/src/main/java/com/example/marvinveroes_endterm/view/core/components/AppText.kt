@@ -7,6 +7,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 
+/**
+ * AppText
+ * Componente reutilizable para mostrar texto con estilos y colores personalizados.
+ */
 @Composable
 fun AppText(
     text: String,
